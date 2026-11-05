@@ -32,14 +32,15 @@ OpenCode Go 的用量接口需要 Bearer Token，浏览器不能持有该密钥�
 ## 安装
 
 在 Web 界面安装（推荐）：**设置 → 插件 → 添加插件**，填入
-`github:Gingmzmzx/dsh-opencode-go-usage`（或本地目录的绝对路径）。
+`https://github.com/Gingmzmzx/dsh-opencode-go-usage.git`
+（或本地目录的绝对路径）。仓库是公开的，HTTPS 克隆不需要 SSH key。
 安装器会执行 `pnpm add`、把包加入 profile 的 `dsh.profile.bundles`、
 启用并重载。
 
 命令行安装分两步（`dsh plugin ... add` 只转发给 pnpm，不会启用 bundle）：
 
 ```bash
-dsh plugin --profile web add github:Gingmzmzx/dsh-opencode-go-usage
+dsh plugin --profile web add https://github.com/Gingmzmzx/dsh-opencode-go-usage.git
 # 再把 "dsh-opencode-go-usage" 加进 ~/.dsh/profiles/web/package.json
 # 的 dsh.profile.bundles，然后重启/重载 DSH
 ```
@@ -75,7 +76,9 @@ dsh plugin --profile web add link:/absolute/path/to/dsh-opencode-go-usage
 还必须把包名加进 `~/.dsh/profiles/web/package.json` 的 `dsh.profile.bundles`，
 否则不会挂载。GUI 安装会自动完成这两步。
 
-上面的 `github:` 形式要求仓库已经推送；也可以 `npm publish` 后直接从 npm 安装。
+`github:Gingmzmzx/dsh-opencode-go-usage` 简写也可以，但它走 SSH，需要本机已把
+SSH key 加到 GitHub；上面的 HTTPS 形式则只需要能访问 GitHub。也可以
+`npm publish` 后直接从 npm 安装。
 发布 npm 前递增版本号即可（本包已不是 `private`）。
 
 ## 路由
