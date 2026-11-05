@@ -81,6 +81,31 @@ SSH key 加到 GitHub；上面的 HTTPS 形式则只需要能访问 GitHub。也
 `npm publish` 后直接从 npm 安装。
 发布 npm 前递增版本号即可（本包已不是 `private`）。
 
+## 更新
+
+`pnpm install` 不会重新解析 GitHub 依赖的 HEAD：上游推了新提交后它仍会打印
+`Already up to date`，锁文件里还是旧 commit。按 URL 安装的机器要显式更新：
+
+```bash
+cd ~/.dsh/profiles/web
+pnpm update dsh-opencode-go-usage
+
+# 核对锁文件中的 commit 与远端 HEAD 是否一致
+grep -A3 'dsh-opencode-go-usage' pnpm-lock.yaml
+git ls-remote https://github.com/Gingmzmzx/dsh-opencode-go-usage refs/heads/main
+```
+
+然后重启 DSH（Host 半在启动时加载）。只改了 `lib/client.js` 时通常强制刷新页面
+（Ctrl+Shift+R）就能生效，Host 半有改动则必须重启。
+
+GUI 的等价操作是：**设置 → 插件 → 卸载**，再「添加插件」填同一个 URL——会重新
+拉取最新提交并自动重载。
+
+本仓库的 `link:` 安装不需要上面步骤：在插件目录 `git pull` 后重启即可。
+
+想固定版本，安装时在 URL 后加上 tag 或 commit，例如
+`https://github.com/Gingmzmzx/dsh-opencode-go-usage.git#v0.1.0`。
+
 ## 路由
 
 | 方法 | 路径 | 说明 |
