@@ -1,0 +1,9 @@
+# Mount the OpenCode Go usage widget into the Web profile.
+#
+# The Host half serves the usage snapshot on /opencode-go-usage/usage; the
+# Client half renders the progress bars in `sidebar.footer.action`, directly
+# above the Settings button in the sidebar footer.
+
+- insert:
+    - id: opencode-go-usage
+      name: dsh-opencode-go-usage

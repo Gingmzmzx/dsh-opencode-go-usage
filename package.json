@@ -1,0 +1,53 @@
+{
+  "name": "dsh-opencode-go-usage",
+  "version": "0.1.0",
+  "description": "OpenCode Go usage progress bars (5-hour, weekly, monthly) in the DSH Web sidebar footer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Gingmzmzx/dsh-opencode-go-usage.git"
+  },
+  "homepage": "https://github.com/Gingmzmzx/dsh-opencode-go-usage#readme",
+  "bugs": {
+    "url": "https://github.com/Gingmzmzx/dsh-opencode-go-usage/issues"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib",
+    "locale/*.json",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/host.test.mjs && node test/client.test.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "opencode",
+    "opencode-go",
+    "usage",
+    "quota"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-renderer"
+      ]
+    }
+  }
+}

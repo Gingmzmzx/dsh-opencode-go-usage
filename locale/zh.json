@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "OpenCode Go 用量",
+    "description": "在侧边栏左下角以进度条展示 OpenCode Go 的 5 小时、本周、本月用量。"
+  }
+}
